@@ -7,8 +7,16 @@ import "./style/index.css"
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <BrowserRouter>
+    {/* br parent  */}
     <App />
+    {/* app child */}
   </BrowserRouter>
 
 );
+
+/*
+ 
+
+
+*/
 
