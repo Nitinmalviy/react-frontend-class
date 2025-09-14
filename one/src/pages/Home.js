@@ -27,19 +27,24 @@ function Home() {
         "AWS",
     ]);
 
-
     let [counter, setCounter] = useState(1);
 
+
+
+
     const increseCounter = () => {
-        setCounter(counter + 1)
+        setCounter(prev => prev + 4)
     }
+
+    //  api fetch --- data use help 
 
     return (
         <>
             <div>
                 <div className="skills-containers">
-                    {skills.map((item) => {
-                        return <Card skill={item} />
+                    {skills.map((item, index) => {
+                        return <Card skill={item} sNo={index + 1} />
+                        // props key ---- {}
                     })
                     }
                 </div>
@@ -47,6 +52,9 @@ function Home() {
                 <div className="counter-container">
                     <label htmlFor="counter">{counter}</label>
                     <button onClick={increseCounter} className="btn-click">Click</button>
+
+
+
                 </div>
             </div>
         </>
