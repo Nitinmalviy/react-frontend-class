@@ -7,17 +7,14 @@ import Footer from "./components/Footer";
 import Register from "./Pages/auth/Register";
 import Login from "./Pages/auth/Login";
 import PageNotFound from "./components/PageNotFound";
+import CaseStudy from "./components/CaseStudy";
+import Blog from "./components/Blog";
 
 
 function App() {
   const location = useLocation()
-  console.log("location --", location.pathname);
   let isVisible = false;
   isVisible = ["/login", "/register", "/*"].includes(location.pathname)
-
-  console.log(isVisible);
-
-  // t && t  
 
   return (
     <>
@@ -27,7 +24,10 @@ function App() {
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/about" element={<About />} />
-            <Route path="/insides" element={<Insides />} />
+            <Route path="/insides" element={<Insides />} >
+              <Route index element={<CaseStudy />} />
+              <Route path="blog" element={<Blog />} />
+            </Route>
             <Route path="/login" element={<Login />} />
             <Route path="/register" element={<Register />} />
             <Route path="/*" element={<PageNotFound />} />
