@@ -3,8 +3,6 @@ import { Link, Outlet, useLocation, useNavigate } from "react-router-dom";
 export default function Insides() {
     const location = useLocation();
     const navigate = useNavigate();
-    console.log("location --- ", location.pathname);
-
 
     return (
         <>
@@ -12,7 +10,11 @@ export default function Insides() {
                 <div class="my-5 flex gap-2 mx-20">
                     <button
                         onClick={() => {
-                            navigate("/insides/blog");
+                            navigate("/insides/blog", {
+                                state: {
+                                    username: "Jone Doe", email: "jonathan@gmail.com"
+                                }
+                            });
                         }}
                         class={`${location.pathname == "/insides/blog" ? "text-blue-700" : "bg-blue-700 text-white"} relative cursor-pointer mt-4 rounded-lg border-2 border-blue-700  px-6 py-2 font-medium  transition hover:translate-y-1`}
                     >
@@ -20,7 +22,11 @@ export default function Insides() {
                     </button>
                     <button
                         onClick={() => {
-                            navigate("/insides");
+                            navigate("/insides", {
+                                state: {
+                                    username: "Jone Doe", email: "jonathan@gmail.com"
+                                }
+                            });
                         }}
                         class={`${location.pathname == "/insides" ? "text-blue-700" : "bg-blue-700 text-white"}  mt-4  cursor-pointer rounded-lg border-2 border-blue-700 px-6 py-2 font-medium text-blue-700 transition hover:translate-y-1`}
                     >

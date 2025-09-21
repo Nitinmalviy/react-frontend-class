@@ -9,6 +9,7 @@ import Login from "./Pages/auth/Login";
 import PageNotFound from "./components/PageNotFound";
 import CaseStudy from "./components/CaseStudy";
 import Blog from "./components/Blog";
+import Profile from "./components/Profile";
 
 
 function App() {
@@ -28,7 +29,9 @@ function App() {
               <Route index element={<CaseStudy />} />
               <Route path="blog" element={<Blog />} />
             </Route>
+
             <Route path="/login" element={<Login />} />
+            <Route path="/profile/:id/:appno" element={<Profile />} />
             <Route path="/register" element={<Register />} />
             <Route path="/*" element={<PageNotFound />} />
           </Routes>

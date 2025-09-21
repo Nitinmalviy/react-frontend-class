@@ -1,7 +1,13 @@
 import React, { useState } from 'react'
 import Card from './ui/Card'
+import { useLocation } from 'react-router-dom'
 
 export default function Blog() {
+
+    const location = useLocation();
+    let username = location.state.username;
+    let email = location.state.email;
+
 
     const [blogData, setBlogData] = useState([
         {
@@ -106,7 +112,7 @@ export default function Blog() {
 
     return (
         <>
-            <h1 class="text-center font-sans text-4xl font-bold">Out Blogs</h1>
+            <h1 class="text-center font-sans text-4xl font-bold">Well come {username} {email} Our Blogs</h1>
             <div class="mx-auto grid max-w-screen-lg justify-center px-4 sm:grid-cols-2 sm:gap-4 sm:px-8 md:grid-cols-3">
                 {
                     blogData.map((data) => { return < Card data={data} /> })

@@ -1,7 +1,8 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 
 export default function Navbar() {
+    let [isLoggedIn, setIsLoggedIn] = useState(false);
     const navigate = useNavigate()
 
     const handleNaviLogin = () => {
@@ -10,6 +11,19 @@ export default function Navbar() {
 
     const handleNaviReg = () => {
         navigate("/register")
+    }
+
+    useEffect(() => {
+        let user = sessionStorage.getItem("user")
+        if (user) {
+            setIsLoggedIn(true)
+        }
+    }, [])
+
+    const logOut = () => {
+        sessionStorage.clear()
+        setIsLoggedIn(false)
+        navigate("/login")
     }
 
     return (
@@ -32,10 +46,10 @@ export default function Navbar() {
                     <li className="md:mr-12"><Link to={"/insides"}>Insides</Link></li>
                     <li className="md:mr-12"><Link to={"/about"}>About</Link></li>
                     <li className="md:mr-12">
-                        <button onClick={handleNaviLogin} className="rounded-full border-2 border-blue-900 px-6 py-1 text-blue-900 transition-colors hover:bg-blue-900 cursor-pointer hover:text-white">Login</button>
+                        {!isLoggedIn ? <button onClick={handleNaviLogin} className="rounded-full border-2 border-blue-900 px-6 py-1 text-blue-900 transition-colors hover:bg-blue-900 cursor-pointer hover:text-white">Login</button> : <button onClick={logOut} className="rounded-full border-2 border-blue-900 px-6 py-1 text-blue-900 transition-colors hover:bg-blue-900 cursor-pointer hover:text-white">Log Out</button>}
                     </li>
                     <li className="md:mr-12">
-                        <button onClick={handleNaviReg} className="rounded-full border-2 border-blue-900 px-6 py-1 text-blue-900 transition-colors hover:bg-blue-900 cursor-pointer hover:text-white">Sing-up</button>
+                        {!isLoggedIn && <button onClick={handleNaviReg} className="rounded-full border-2 border-blue-900 px-6 py-1 text-blue-900 transition-colors hover:bg-blue-900 cursor-pointer hover:text-white">Sing-up</button>}
                     </li>
                 </ul>
             </nav>

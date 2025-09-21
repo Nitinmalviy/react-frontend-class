@@ -1,7 +1,14 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 
 export default function Login() {
+    const navigate = useNavigate()
+    const handleLogin = () => {
+        let userId = "1234567890"
+        sessionStorage.setItem("user", "user-login")
+        navigate(`/profile/${userId}/${"ABC1230N"}`)
+    }
+
     return (
         <div className="flex w-full flex-wrap">
             <div className="flex w-full flex-col md:w-1/2 lg:w-1/3">
@@ -37,7 +44,7 @@ export default function Login() {
                             </div>
                         </div>
                         <button type="submit" className="w-full rounded-lg bg-blue-700 px-4 py-2 text-center text-base font-semibold text-white shadow-md transition ease-in hover:bg-blue-600 focus:outline-none focus:ring-2">
-                            <span className="w-full"> Submit </span>
+                            <span className="w-full" onClick={handleLogin}> Login </span>
                         </button>
                     </form>
                     <div className="pt-12 pb-12 text-center">
