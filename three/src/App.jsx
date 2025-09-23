@@ -10,6 +10,7 @@ import PageNotFound from "./components/PageNotFound";
 import CaseStudy from "./components/CaseStudy";
 import Blog from "./components/Blog";
 import Profile from "./components/Profile";
+import Products from "./Pages/Products";
 
 
 function App() {
@@ -31,6 +32,7 @@ function App() {
             </Route>
 
             <Route path="/login" element={<Login />} />
+            <Route path="/products" element={<Products />} />
             <Route path="/profile/:id/:appno" element={<Profile />} />
             <Route path="/register" element={<Register />} />
             <Route path="/*" element={<PageNotFound />} />

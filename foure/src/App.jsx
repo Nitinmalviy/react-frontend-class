@@ -2,20 +2,15 @@ import { useState } from 'react'
 
 import './App.css'
 import Button from './components/Button'
+import Form from './components/Form'
 
 function App() {
-  const [count, setCount] = useState(0)
+  // const [count, setCount] = useState(0)
 
   return (
     <>
-
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <br />
-        <br />
-        <Button data={count} />
+      <div className="form">
+        <Form />
       </div>
     </>
   )
