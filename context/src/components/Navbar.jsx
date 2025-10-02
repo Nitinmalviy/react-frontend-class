@@ -1,34 +1,44 @@
-import React, { useContext } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { UserContext } from "../context/UserContext";
+import { useContext } from "react";
 
 export default function Navbar() {
-
     const { user } = useContext(UserContext)
-
     const navigate = useNavigate()
+
+
+    const handeProfile = () => {
+        navigate("/profile")
+    }
     return (
         <nav className="bg-white dark:bg-gray-900 fixed w-full z-20 top-0 start-0 border-b border-gray-200 dark:border-gray-600">
             <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
                 <div className="flex md:order-2 space-x-3 md:space-x-0 rtl:space-x-reverse">
-                    <button
-                        type="button"
-                        onClick={() => {
-                            navigate('/login')
-                        }}
-                        className="cursor-pointer text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
-                    >
-                        Login
-                    </button>
-                    <button
-                        type="button"
-                        onClick={() => {
-                            navigate('/sing-up')
-                        }}
-                        className=" cursor-pointer text-white ml-2 bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
-                    >
-                        SingUp
-                    </button>
+                    {user ? <div className="cursor-pointer flex gap-4 items-center justify-center" onClick={handeProfile}>
+                        <h1 className="text-white uppercase font-bold">{user?.user?.username}</h1> <div className="w-[40px] h-[40px] bg-white rounded-full"><img className="w-full h-full rounded-full" src={user?.user?.avatar?.url || "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"} alt=".." />
+                        </div>
+                    </div> :
+                        <>   <button
+                            type="button"
+                            onClick={() => {
+                                navigate('/login')
+                            }}
+                            className="cursor-pointer text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+                        >
+                            Login
+                        </button>
+                            <button
+                                type="button"
+                                onClick={() => {
+                                    navigate('/sing-up')
+                                }}
+                                className=" cursor-pointer text-white ml-2 bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+                            >
+                                SingUp
+                            </button>
+                            <h1>{user?.user?.username}</h1>
+                        </>
+                    }
                     <button
                         data-collapse-toggle="navbar-sticky"
                         type="button"
@@ -46,9 +56,9 @@ export default function Navbar() {
                         >
                             <path
                                 stroke="currentColor"
-                                stroke-linecap="round"
-                                stroke-linejoin="round"
-                                stroke-width="2"
+                                strokeLinecap="round"
+                                strokeLinejoin="round"
+                                strokeWidth="2"
                                 d="M1 1h15M1 7h15M1 13h15"
                             />
                         </svg>
@@ -64,8 +74,6 @@ export default function Navbar() {
                                 to={"/"}
                                 className="block py-2 px-3 text-white bg-blue-700 rounded-sm md:bg-transparent md:text-blue-700 md:p-0 md:dark:text-blue-500"
                             >
-                                {user.email || "not provide"}
-
                                 Home
                             </Link>
                         </li>
@@ -96,6 +104,6 @@ export default function Navbar() {
                     </ul>
                 </div>
             </div>
-        </nav>
+        </nav >
     );
 }

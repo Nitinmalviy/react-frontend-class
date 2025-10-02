@@ -9,24 +9,26 @@ import Singup from "./components/auth/Singup"
 import Login from "./components/auth/Login"
 import { UserProvider } from "./context/UserContext"
 import Profile from "./pages/Profile"
+import { ToastContainer } from "react-toastify"
 
 function App() {
 
   return (
     <>
-
-      <UserProvider > <Navbar /></UserProvider >
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/product" element={<Product />} />
-        <Route path="/about" element={<About />} />
-        <Route path="/contact" element={<Contact />} />
-        <Route path="/profile" element={
-          <UserProvider><Profile /></UserProvider>} />
-        <Route path="/login" element={<UserProvider><Login /></UserProvider>} />
-        <Route path="/sing-up" element={<Singup />} />
-      </Routes>
-      <Footer />
+      <UserProvider>
+        <ToastContainer />
+        <Navbar />
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/product" element={<Product />} />
+          <Route path="/about" element={<About />} />
+          <Route path="/contact" element={<Contact />} />
+          <Route path="/profile" element={<Profile />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/sing-up" element={<Singup />} />
+        </Routes >
+        <Footer />
+      </UserProvider >
 
     </>
   )
