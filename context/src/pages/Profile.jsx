@@ -1,20 +1,32 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { UserContext } from "../context/UserContext";
 import { Edit2Icon } from "lucide-react";
+import { useNavigate } from "react-router-dom";
 
 export default function Profile() {
+    const navigate = useNavigate();
     const { user } = useContext(UserContext);
     const [selectedImage, setSelectImage] = useState("")
     const userData = user?.user;
+
+    useEffect(() => {
+
+        if (!user) {
+            navigate("/login")
+        }
+    }, [])
 
     const handleFileChange = (e) => {
         const file = e.target.files[0];
         if (file) {
             setSelectImage(URL.createObjectURL(file))
         }
-
-        // path , name , size
     }
+
+    // {adress:{street:"",}}
+
+
+    // adress?.street  optional chaining
 
     return (
         <div className=" flex min-h-screen items-center justify-center bg-gray-900 text-white">
@@ -40,13 +52,13 @@ export default function Profile() {
                 <div className="space-y-4">
                     <div>
                         <p className="text-gray-400">Email</p>
-                        <p className="font-semibold">{userData.email || "Not Logged In"}</p>
+                        <p className="font-semibold">{userData?.email || "Not Logged In"}</p>
                     </div>
 
                     <div>
                         <p className="text-gray-400">Password</p>
                         <p className="font-semibold">
-                            {userData.username ? userData?.username : "Not Logged In"}
+                            {userData?.username ? userData?.username : "Not Logged In"}
                         </p>
                     </div>
                 </div>
